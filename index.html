@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ThinkMINNT Foundation</title>
+  <style>
+    /* Base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #1a1a72, #4a148c);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+    }
+    
+    .container {
+      max-width: 900px;
+      text-align: center;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .logo img {
+      width: 200px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    .message {
+      font-size: 2rem;
+      margin: 20px 0;
+      font-weight: bold;
+    }
+
+    /* Progress bar */
+    .progress-bar {
+      position: relative;
+      height: 12px;
+      background: #ffffff33;
+      border-radius: 20px;
+      overflow: hidden;
+      margin: 30px auto 40px;
+      width: 80%;
+    }
+
+    .progress-bar .progress {
+      height: 100%;
+      width: 0%;
+      background: #ffffff;
+      transition: width 0.3s ease;
+    }
+
+    /* Countdown */
+    .countdown {
+      margin-top: 20px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    /* Icon grid */
+    .icon-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .icon {
+      position: relative;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #ffffff33;
+      border-radius: 50%;
+      transition: transform 0.3s ease, background 0.3s ease;
+      cursor: pointer;
+      animation: fadeInIcons 1.2s ease-in-out;
+    }
+
+    @keyframes fadeInIcons {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .icon:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    .icon img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .tooltip {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      color: #0047AE;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .icon:hover .tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+
+    /* Newsletter signup */
+    .newsletter {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .newsletter p {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .newsletter input[type="email"] {
+      padding: 12px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      width: 60%;
+      max-width: 300px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .newsletter button {
+      padding: 12px 25px;
+      font-size: 1rem;
+      background: #ffffff;
+      color: #0047AE;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .newsletter button:hover {
+      background: #2E9E9D;
+      color: white;
+    }
+
+    /* Social media links */
+    .social-media {
+      margin-top: 20px;
+    }
+
+    .social-media a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-size: 1.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .social-media a:hover {
+      color: #2E9E9D;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 768px) {
+      .icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .icon img {
+        width: 30px;
+        height: 30px;
+      }
+
+      .message {
+        font-size: 1.5rem;
+      }
+
+      .newsletter input[type="email"] {
+        width: 80%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .message {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="logo.jpg" alt="ThinkMINNT Logo">
+    </div>
+
+    <!-- Message -->
+    <div class="message">We're building something amazing for you!</div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- Countdown Timer -->
+    <div class="countdown" id="countdown">Loading launch date...</div>
+
+    <!-- Icon Grid -->
+    <div class="icon-grid">
+      <div class="icon">
+        <img src="https://img.icons8.com/ios/50/ffffff/math.png" alt="Math Icon">
+        <div class="tooltip">Mathematics</div>
+      </div>
+      <div class="icon">
+        <img src="https://img.icons8.com/ios/50/ffffff/code.png" alt="Informatics Icon">
+        <div class="tooltip">Informatics</div>
+      </div>
+      <div class="icon">
+        <img src="https://img.icons8.com/ios/50/ffffff/network.png" alt="Networking Icon">
+        <div class="tooltip">Networking</div>
+      </div>
+      <div class="icon">
+        <img src="https://img.icons8.com/ios/50/ffffff/settings.png" alt="Technology Icon">
+        <div class="tooltip">Technology</div>
+      </div>
+    </div>
+
+    <!-- Newsletter Signup -->
+    <div class="newsletter">
+      <p>Sign up for updates:</p>
+      <form id="newsletterForm">
+        <input type="email" name="email" placeholder="Enter your email" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p id="subscriptionMessage" style="margin-top: 10px; color: #2E9E9D; font-weight: bold;"></p>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="social-media">
+      <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/facebook.png" alt="Facebook"></a>
+      <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/twitter.png" alt="Twitter"></a>
+      <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/linkedin.png" alt="LinkedIn"></a>
+      <a href="#" target="_blank"><img src="https://img.icons8.com/ios-filled/50/ffffff/instagram.png" alt="Instagram"></a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">Pune, Maharashtra, India | Coming Soon!</div>
+  </div>
+
+  <script>
+    // Progress bar animation
+    let progress = 0;
+    const progressBar = document.getElementById('progress');
+
+    function updateProgress() {
+      progress += 1;
+      if (progress > 100) progress = 0;
+      progressBar.style.width = `${progress}%`;
+    }
+
+    setInterval(updateProgress, 150); // Update every 350ms
+
+    // Countdown timer
+    const countdownElement = document.getElementById('countdown');
+    const launchDate = new Date('2024-12-31T00:00:00'); // Set your launch date here
+
+    function updateCountdown() {
+      const now = new Date();
+      const timeDifference = launchDate - now;
+
+      if (timeDifference <= 0) {
+        countdownElement.textContent = "We're live!";
+        return;
+      }
+
+      const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+      countdownElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s until launch`;
+    }
+
+    setInterval(updateCountdown, 1000); // Update every second
+
+    // Newsletter signup functionality
+    document.getElementById('newsletterForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const emailInput = event.target.email;
+      const subscriptionMessage = document.getElementById('subscriptionMessage');
+
+      // Simulating an API call
+      setTimeout(() => {
+        subscriptionMessage.textContent = `Thank you for subscribing, ${emailInput.value}!`;
+        emailInput.value = '';
+      }, 1000);
+    });
+    
+  </script>
+</body>
+</html>
